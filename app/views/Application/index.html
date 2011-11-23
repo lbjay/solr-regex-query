@@ -1,0 +1,29 @@
+#{extends 'main.html' /}
+#{set title:'Fulltext Regex Search' /}
+
+<h1>Fulltext Regex Search</h1>
+
+#{form @Application.index()}
+    Query: <input type="text" name="q" value="${q}"/>
+    <input type="submit" value="Search"/>
+#{/form}
+
+#{if results}
+    <h3>Total hits: ${hits} (max of 1k shown)</h3>
+    Search took ${duration}.
+    <ol>
+    #{list items:results.keySet(), as:'key'}
+        <li><h5><a href="http://labs.adsabs.harvard.edu/ui/abs/${key}">${key}</a></h5>
+        #{set snippets:results.get(key)/}
+        <ul>
+            #{list items:snippets, as:'snip'}
+                #{if snip}
+                <li>${snip.raw()}</li>
+                #{/if}
+            #{/list}
+        </ul>
+        </li>
+    #{/list}
+    </ol>
+#{/if}
+
