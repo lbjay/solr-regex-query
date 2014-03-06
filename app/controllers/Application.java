@@ -6,14 +6,14 @@ import play.mvc.*;
 import java.util.*;
 import org.ads.solr.RegexQueryTest;
 
-import models.*;
+//import models.*;
 
 public class Application extends Controller {
 
     public static void index() {
         String pattern = params.get("q");
         if (pattern != null) {
-            String indexPath = "/proj/adszee/solr4ads/solr/fulltext-regex/data/index/";
+            String indexPath = "/proj/adszee/solr4ads/solr/fulltext/data/index/";
             RegexQueryTest rqt = new RegexQueryTest(indexPath);
             RegexQueryTest.RegexQueryResult results = null;
             try {
